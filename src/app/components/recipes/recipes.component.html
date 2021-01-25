@@ -1,0 +1,36 @@
+<div class="container float-left">
+    <form [formGroup]="newRecipeForm" (ngSubmit)="newRecipe()">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <input formControlName="name" [class.is-invalid]="newRecipeForm.get('name')?.invalid && newRecipeForm.get('name')?.dirty && newRecipeForm.get('name')?.touched" type="text" placeholder="Name" class="form-control" >
+                    <div class="invalid-feedback text-left">
+                        Name must be at least 3 characters long.
+                    </div>
+            </div>
+            <div class="form-group col-md-2">
+                <select formControlName="category" class="form-control">
+                    <option selected disabled value="">Choose...</option>
+                    <option [ngValue]="0">Breakfast</option>
+                    <option [ngValue]="1">Dinner</option>
+                    <option [ngValue]="2">Supper</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <textarea formControlName="description" [class.is-invalid]="newRecipeForm.get('description')?.invalid && newRecipeForm.get('description')?.dirty && newRecipeForm.get('description')?.touched" placeholder="Description" class="form-control" ></textarea>
+                    <div class="invalid-feedback text-left">
+                        Description must be at least 10 characters long.
+                    </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <button [disabled]="newRecipeForm.invalid" class="btn btn-success btn-block" type="submit">Create Recipe</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div>
+    <app-recipes-list></app-recipes-list>
+</div>

@@ -1,0 +1,20 @@
+<div *ngIf="recipes.length == 0; else showTable">
+    There are no recipes!
+</div>
+<ng-template #showTable>
+<!-- https://getbootstrap.com/docs/4.5/content/tables/#hoverable-rows -->
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Recipes</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let recipe of recipes" app-recipes-list-item [recipe]="recipe" (recipeClicked)="recipeClicked($event)"></tr>
+    </tbody>
+</table>
+</ng-template>

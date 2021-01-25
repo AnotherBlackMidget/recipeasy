@@ -1,0 +1,17 @@
+<div *ngIf="users.length == 1; else showTable">
+You are the only user!
+</div>
+<ng-template #showTable>
+<!-- https://getbootstrap.com/docs/4.5/content/tables/#hoverable-rows -->
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users" app-users-list-item [user]="user" (userClicked)="userClicked($event)"></tr>
+    </tbody>
+</table>
+</ng-template>

@@ -1,0 +1,38 @@
+<div class="container text-center">
+    <div class="row mt-2">
+        <div class="col-10 offset-1">
+             <!-- https://getbootstrap.com/docs/4.5/components/alerts/#examples -->
+        <div *ngIf="authError" class="alert alert-danger" role="alert">
+            {{ authError }}
+          </div>
+  
+          <!-- https://getbootstrap.com/docs/4.5/components/forms -->
+          <form [formGroup]="loginForm" (ngSubmit)="logIn()">
+              <div class="form-group">
+                <input
+                  formControlName="email"
+                  [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.dirty && loginForm.get('email')?.touched"
+                  type="email" placeholder="Email" class="form-control" >
+                <div class="invalid-feedback text-left">
+                  Email must be valid.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input
+                  formControlName="password"
+                  [class.is-invalid]="passwordControl.invalid && passwordControl.dirty && passwordControl.touched"
+                  type="password" placeholder="Password" class="form-control" >
+                <div *ngIf="passwordControl.invalid && passwordControl.dirty && passwordControl.touched" class="text-left text-danger">
+                  Password must be at least 3 characters long.
+                </div>
+              </div>
+
+              <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+
+              <a [routerLink]="['/signup']" class="btn btn-outline-success btn-block mt-4" role="button">Sign up</a>
+            </form>
+        </div>
+    </div>
+</div>  
